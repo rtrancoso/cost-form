@@ -1,4 +1,4 @@
-package br.com.rtrancoso.costcovidform2.model;
+package br.com.rtrancoso.costcovidform.model;
 
 import java.time.LocalDateTime;
 

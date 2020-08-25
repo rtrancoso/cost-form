@@ -1,4 +1,4 @@
-package br.com.rtrancoso.costcovidform2;
+package br.com.rtrancoso.costcovidform;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,10 +7,10 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
-public class CostCovidForm2Application {
+public class CostCovidFormApplication {
 
 	public static void main( String[] args ) {
-		SpringApplication.run( CostCovidForm2Application.class, args );
+		SpringApplication.run( CostCovidFormApplication.class, args );
 	}
 
 	@Bean

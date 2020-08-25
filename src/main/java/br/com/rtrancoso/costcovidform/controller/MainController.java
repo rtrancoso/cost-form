@@ -1,4 +1,4 @@
-package br.com.rtrancoso.costcovidform2.controller;
+package br.com.rtrancoso.costcovidform.controller;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.rtrancoso.costcovidform2.dto.StatusDTO;
-import br.com.rtrancoso.costcovidform2.model.Presenca;
-import br.com.rtrancoso.costcovidform2.repository.ConfigRepository;
-import br.com.rtrancoso.costcovidform2.repository.PresencaRepository;
+import br.com.rtrancoso.costcovidform.dto.StatusDTO;
+import br.com.rtrancoso.costcovidform.model.Presenca;
+import br.com.rtrancoso.costcovidform.repository.ConfigRepository;
+import br.com.rtrancoso.costcovidform.repository.PresencaRepository;
 
 @RestController
 public class MainController {

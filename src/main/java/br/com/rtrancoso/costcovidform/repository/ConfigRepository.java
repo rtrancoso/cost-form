@@ -1,8 +1,8 @@
-package br.com.rtrancoso.costcovidform2.repository;
+package br.com.rtrancoso.costcovidform.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import br.com.rtrancoso.costcovidform2.model.Config;
+import br.com.rtrancoso.costcovidform.model.Config;
 
 public interface ConfigRepository extends MongoRepository<Config, String> {
 

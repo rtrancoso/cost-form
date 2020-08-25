@@ -1,4 +1,4 @@
-package br.com.rtrancoso.costcovidform2.dto;
+package br.com.rtrancoso.costcovidform.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
