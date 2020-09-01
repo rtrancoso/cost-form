@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.rtrancoso.costcovidform.dto.StatusDTO;
@@ -21,6 +22,7 @@ import br.com.rtrancoso.costcovidform.repository.PresencaRepository;
 import br.com.rtrancoso.costcovidform.repository.ReuniaoRepository;
 
 @RestController
+@RequestMapping( "meetings" )
 public class MainController {
 
 	@Autowired
@@ -32,23 +34,23 @@ public class MainController {
 	@Autowired
 	private PresencaRepository presencaRepository;
 
-	@GetMapping( "/meetings" )
-	public List<Reuniao> meetings() {
+	@GetMapping
+	public List<Reuniao> list() {
 		return reuniaoRepository.findAll();
 	}
 
-	@GetMapping( "/meetings/active" )
-	public List<Reuniao> meetingsActive() {
+	@GetMapping( "active" )
+	public List<Reuniao> listActive() {
 		return reuniaoRepository.findAllByAtivo( true );
 	}
 
-	@PostMapping( "/meetings" )
-	public Reuniao meetingsCreate( @RequestBody Reuniao reuniao ) {
+	@PostMapping
+	public Reuniao create( @RequestBody Reuniao reuniao ) {
 		return reuniaoRepository.save( reuniao );
 	}
 
-	@PutMapping( "/meetings/{meeting}/ativo" )
-	public void meetingsToggle( @PathVariable String meeting ) {
+	@PutMapping( "{meeting}/ativo" )
+	public void toggle( @PathVariable String meeting ) {
 		Optional<Reuniao> reuniao = reuniaoRepository.findById( meeting );
 		if( reuniao.isPresent() ) {
 			Reuniao r = reuniao.get();
@@ -57,27 +59,28 @@ public class MainController {
 		}
 	}
 
-	@DeleteMapping( "/meetings/{meeting}" )
-	public void meetingsDelete( @PathVariable String meeting ) {
+	@DeleteMapping( "{meeting}" )
+	public void delete( @PathVariable String meeting ) {
 		reuniaoRepository.deleteById( meeting );
 	}
 
-	@GetMapping( "/meetings/{meeting}/status" )
-	public StatusDTO meetingsStatus( @PathVariable String meeting ) {
+	@GetMapping( "{meeting}/status" )
+	public StatusDTO status( @PathVariable String meeting ) {
 		long total = Long.parseLong( configRepository.findByKey( "QUANTIDADE" ).getValue() );
 		long restante = total - presencaRepository.findAllByReuniao( reuniaoRepository.findById( meeting ).get() ).size();
 
 		return StatusDTO.builder().rest( restante ).full( total ).build();
 	}
 
-	@GetMapping( "/list" )
-	public List<Presenca> list() {
-		return presencaRepository.findAll();
+	@GetMapping( "{meeting}/list" )
+	public List<Presenca> listConfirmation( @PathVariable String meeting ) {
+		return presencaRepository.findAllByReuniao( reuniaoRepository.findById( meeting ).get() );
 	}
 
-	@PostMapping( "/confirm" )
-	public Presenca confirm( @RequestBody Presenca presenca ) {
-		var optional = presencaRepository.findByNomeAndReuniao( presenca.getNome(), presenca.getReuniao() );
+	@PostMapping( "{meeting}/confirm" )
+	public Presenca confirm( @PathVariable String meeting, @RequestBody Presenca presenca ) {
+		var reuniao = reuniaoRepository.findById( meeting ).get();
+		var optional = presencaRepository.findByNomeAndReuniao( presenca.getNome(), reuniao );
 		if( !optional.isPresent() ) {
 			presenca.setDataConfirmacao( LocalDateTime.now() );
 			presencaRepository.save( presenca );
