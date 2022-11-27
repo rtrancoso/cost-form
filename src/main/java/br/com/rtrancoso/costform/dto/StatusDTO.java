@@ -1,4 +1,4 @@
-package br.com.rtrancoso.costcovidform.dto;
+package br.com.rtrancoso.costform.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 public class StatusDTO {
 
-	private Long rest;
-	private Long full;
+    private Long rest;
+    private Long full;
 
 }

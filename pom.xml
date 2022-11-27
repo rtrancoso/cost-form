@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	
-	<name>cost-covid-form</name>
+	<name>cost-form</name>
 	<groupId>br.com.rtrancoso</groupId>
-	<artifactId>cost-covid-form</artifactId>
+	<artifactId>cost-form</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<properties>

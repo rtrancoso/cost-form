@@ -1,4 +1,4 @@
-package br.com.rtrancoso.costcovidform.model;
+package br.com.rtrancoso.costform.model;
 
 import java.time.LocalDateTime;
 
@@ -15,15 +15,15 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-@Document( collection = "presenca" )
-public class Presenca {
+@Document(collection = "confirmation")
+public class Confirmation {
 
-	@Id
-	private String id;
-	private String nome;
-	private LocalDateTime dataConfirmacao;
-	
-	@DBRef
-	private Reuniao reuniao;
+    @Id
+    private String id;
+    private String name;
+    private LocalDateTime confirmedAt;
+
+    @DBRef
+    private Meeting meeting;
 
 }

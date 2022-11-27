@@ -1,4 +1,4 @@
-package br.com.rtrancoso.costcovidform.model;
+package br.com.rtrancoso.costform.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -12,12 +12,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-@Document( collection = "config" )
+@Document(collection = "config")
 public class Config {
 
-	@Id
-	private String id;
-	private String key;
-	private String value;
+    @Id
+    private String id;
+    private String key;
+    private String value;
 
 }

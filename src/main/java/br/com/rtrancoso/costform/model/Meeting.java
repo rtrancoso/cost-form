@@ -1,4 +1,4 @@
-package br.com.rtrancoso.costcovidform.model;
+package br.com.rtrancoso.costform.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -14,12 +14,20 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-@Document( collection = "reuniao" )
-public class Reuniao {
+@Document(collection = "meeting")
+public class Meeting {
 
-	@Id
-	private String id;
-	private String descricao;
-	private boolean ativo;
+    @Id
+    private String id;
+    private String description;
+    private Type type;
+    private boolean active;
+
+    public enum Type {
+        LUNCH,
+        MEETING,
+        SATURDAY,
+        SUNDAY
+    }
 
 }
